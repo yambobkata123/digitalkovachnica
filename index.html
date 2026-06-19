@@ -1,260 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Website</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Website</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-    scroll-behavior:smooth;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+        scroll-behavior: smooth;
+      }
 
-body{
-    background:#0f172a;
-    color:white;
-}
+      body {
+        background: #0f172a;
+        color: white;
+      }
 
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(15,23,42,.95);
-    backdrop-filter:blur(10px);
-    z-index:1000;
-}
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+      }
 
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 10%;
-}
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10%;
+      }
 
-.logo{
-    font-size:30px;
-    font-weight:bold;
-    color:#38bdf8;
-}
+      .logo {
+        font-size: 30px;
+        font-weight: bold;
+        color: #38bdf8;
+      }
 
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
 
-nav a{
-    text-decoration:none;
-    color:white;
-    transition:.3s;
-}
+      nav a {
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+      }
 
-nav a:hover{
-    color:#38bdf8;
-}
+      nav a:hover {
+        color: #38bdf8;
+      }
 
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    background:linear-gradient(135deg,#0f172a,#1e3a8a);
-}
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      }
 
-.hero h1{
-    font-size:4rem;
-    margin-bottom:15px;
-}
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 15px;
+      }
 
-.hero p{
-    max-width:700px;
-    font-size:1.2rem;
-    margin-bottom:30px;
-}
+      .hero p {
+        max-width: 700px;
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
 
-.btn{
-    padding:15px 35px;
-    border:none;
-    border-radius:12px;
-    background:#38bdf8;
-    color:white;
-    cursor:pointer;
-    font-size:18px;
-    transition:.3s;
-}
+      .btn {
+        padding: 15px 35px;
+        border: none;
+        border-radius: 12px;
+        background: #38bdf8;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.3s;
+      }
 
-.btn:hover{
-    transform:translateY(-3px);
-    background:#0ea5e9;
-}
+      .btn:hover {
+        transform: translateY(-3px);
+        background: #0ea5e9;
+      }
 
-section{
-    padding:100px 10%;
-}
+      section {
+        padding: 100px 10%;
+      }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
 
-.card{
-    background:#1e293b;
-    padding:30px;
-    border-radius:15px;
-    transition:.3s;
-}
+      .card {
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
 
-.card:hover{
-    transform:translateY(-10px);
-}
+      .card:hover {
+        transform: translateY(-10px);
+      }
 
-.card h3{
-    color:#38bdf8;
-    margin-bottom:10px;
-}
+      .card h3 {
+        color: #38bdf8;
+        margin-bottom: 10px;
+      }
 
-.contact{
-    text-align:center;
-}
+      .contact {
+        text-align: center;
+      }
 
-footer{
-    text-align:center;
-    padding:20px;
-    background:#020617;
-}
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #020617;
+      }
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    justify-content:center;
-    align-items:center;
-}
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }
 
-.modal-content{
-    background:#1e293b;
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    max-width:400px;
-}
+      .modal-content {
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+      }
 
-.close{
-    margin-top:15px;
-}
-</style>
-</head>
-<body>
+      .close {
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">MySite</div>
 
-<header>
-<nav>
-<div class="logo">MySite</div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</header>
+    <section class="hero" id="home">
+      <h1>🚀 Welcome</h1>
+      <p>Create amazing websites with modern design and smooth animations.</p>
+      <button class="btn" onclick="openModal()">Get Started</button>
+    </section>
 
-<section class="hero" id="home">
-<h1>🚀 Welcome</h1>
-<p>Create amazing websites with modern design and smooth animations.</p>
-<button class="btn" onclick="openModal()">Get Started</button>
-</section>
+    <section id="features">
+      <h2 style="text-align: center; margin-bottom: 40px">Features</h2>
 
-<section id="features">
-<h2 style="text-align:center;margin-bottom:40px;">Features</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>⚡ Fast</h3>
+          <p>Optimized for performance.</p>
+        </div>
 
-<div class="cards">
-<div class="card">
-<h3>⚡ Fast</h3>
-<p>Optimized for performance.</p>
-</div>
+        <div class="card">
+          <h3>🎨 Modern</h3>
+          <p>Beautiful and clean UI.</p>
+        </div>
 
-<div class="card">
-<h3>🎨 Modern</h3>
-<p>Beautiful and clean UI.</p>
-</div>
+        <div class="card">
+          <h3>📱 Responsive</h3>
+          <p>Works on all devices.</p>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>📱 Responsive</h3>
-<p>Works on all devices.</p>
-</div>
-</div>
-</section>
+    <section id="about">
+      <h2 style="text-align: center; margin-bottom: 20px">About Us</h2>
+      <p style="text-align: center">
+        This is a modern website template with working buttons, smooth scrolling
+        and interactive elements.
+      </p>
+    </section>
 
-<section id="about">
-<h2 style="text-align:center;margin-bottom:20px;">About Us</h2>
-<p style="text-align:center;">
-This is a modern website template with working buttons,
-smooth scrolling and interactive elements.
-</p>
-</section>
+    <section class="contact" id="contact">
+      <h2>Contact</h2>
+      <br />
+      <button class="btn" onclick="sendMessage()">Send Message</button>
+    </section>
 
-<section class="contact" id="contact">
-<h2>Contact</h2>
-<br>
-<button class="btn" onclick="sendMessage()">Send Message</button>
-</section>
+    <footer>
+      <p>© 2026 MySite. All Rights Reserved.</p>
+    </footer>
 
-<footer>
-<p>© 2026 MySite. All Rights Reserved.</p>
-</footer>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <h2>🎉 Welcome!</h2>
+        <p>Thanks for clicking the button.</p>
+        <button class="btn close" onclick="closeModal()">Close</button>
+      </div>
+    </div>
 
-<div class="modal" id="modal">
-<div class="modal-content">
-<h2>🎉 Welcome!</h2>
-<p>Thanks for clicking the button.</p>
-<button class="btn close" onclick="closeModal()">Close</button>
-</div>
-</div>
-<!-- 
-<script>
-function openModal(){
-    document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-    document.getElementById("modal").style.display="none";
-}
-
-function sendMessage(){
-    alert("Message sent successfully!");
-}
-
-window.onclick = function(event){
-    let modal = document.getElementById("modal");
-    if(event.target == modal){
-        modal.style.display="none";
-    }
-}
-</script> -->
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a35a6ae0892181d4aaf050d/1jrgp674l';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a35a6ae0892181d4aaf050d/1jrgp674l";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
     </script>
     <!--End of Tawk.to Script-->
-
-</body>
+  </body>
 </html>
