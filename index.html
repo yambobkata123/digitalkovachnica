@@ -1068,7 +1068,14 @@
           subject
         )}&body=${encodeURIComponent(body)}`;
 
-        window.location.href = mailto;
+        // По-"чист" UX за Mail: отваря се нов имейл прозорец с попълнен текст.
+        // Ако на практика браузърът блокира/не отвори, линкът все пак е валиден.
+        const a = document.createElement('a');
+        a.href = mailto;
+        a.target = '_self';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       });
     </script>
 
