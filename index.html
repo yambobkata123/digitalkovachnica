@@ -1,239 +1,1092 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Website</title>
+    <title>NeonHost | Web Hosting</title>
 
     <style>
+      :root {
+        --bg0: #050617;
+        --bg1: #0b1230;
+        --card: rgba(15, 23, 42, 0.72);
+        --card2: rgba(30, 41, 59, 0.65);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+
+        --a: #60a5fa; /* blue */
+        --b: #a78bfa; /* purple */
+        --c: #22d3ee; /* cyan */
+        --d: #f472b6; /* pink */
+
+        --glow: 0 0 30px rgba(96, 165, 250, 0.35), 0 0 70px rgba(167, 139, 250, 0.25);
+        --radius: 18px;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Segoe UI", sans-serif;
+        font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
         scroll-behavior: smooth;
       }
 
       body {
-        background: #0f172a;
-        color: white;
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(96, 165, 250, 0.22), transparent 60%),
+          radial-gradient(900px 500px at 85% 15%, rgba(167, 139, 250, 0.25), transparent 55%),
+          radial-gradient(700px 400px at 30% 90%, rgba(34, 211, 238, 0.18), transparent 60%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+        color: var(--text);
+        overflow-x: hidden;
       }
 
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+      }
+
+      /* Header */
       header {
         position: fixed;
         top: 0;
-        width: 100%;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(10px);
+        left: 0;
+        right: 0;
         z-index: 1000;
+        background: rgba(5, 6, 23, 0.65);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       nav {
+        max-width: 1200px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 10%;
+        padding: 16px 18px;
+        gap: 16px;
       }
 
       .logo {
-        font-size: 30px;
-        font-weight: bold;
-        color: #38bdf8;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+      }
+
+      .mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 1), rgba(167, 139, 250, 1));
+        box-shadow: var(--glow);
+        position: relative;
+      }
+
+      .mark:after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 15px;
+        background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.65), transparent 45%);
+        opacity: 0.6;
+      }
+
+      .logo span {
+        font-size: 18px;
       }
 
       nav ul {
-        display: flex;
         list-style: none;
-        gap: 25px;
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       nav a {
         text-decoration: none;
-        color: white;
-        transition: 0.3s;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 14px;
+        padding: 10px 10px;
+        border-radius: 12px;
+        transition: 0.2s ease;
+        outline: none;
       }
 
       nav a:hover {
-        color: #38bdf8;
+        color: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.06);
       }
 
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      .nav-cta {
+        display: inline-flex;
         align-items: center;
-        text-align: center;
-        padding: 20px;
-        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        gap: 10px;
+        padding: 11px 14px;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.95), rgba(167, 139, 250, 0.95));
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: var(--glow);
       }
 
-      .hero h1 {
-        font-size: 4rem;
-        margin-bottom: 15px;
+      .nav-cta .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
       }
 
-      .hero p {
-        max-width: 700px;
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      .btn {
-        padding: 15px 35px;
-        border: none;
-        border-radius: 12px;
-        background: #38bdf8;
-        color: white;
-        cursor: pointer;
-        font-size: 18px;
-        transition: 0.3s;
-      }
-
-      .btn:hover {
-        transform: translateY(-3px);
-        background: #0ea5e9;
+      /* Layout */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 18px;
       }
 
       section {
-        padding: 100px 10%;
+        padding: 92px 0;
       }
 
-      .cards {
+      /* Hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 90px;
+        position: relative;
+      }
+
+      .hero-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-      }
-
-      .card {
-        background: #1e293b;
-        padding: 30px;
-        border-radius: 15px;
-        transition: 0.3s;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-      }
-
-      .card h3 {
-        color: #38bdf8;
-        margin-bottom: 10px;
-      }
-
-      .contact {
-        text-align: center;
-      }
-
-      footer {
-        text-align: center;
-        padding: 20px;
-        background: #020617;
-      }
-
-      .modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.7);
-        justify-content: center;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 26px;
         align-items: center;
       }
 
-      .modal-content {
-        background: #1e293b;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        max-width: 400px;
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 700;
+        font-size: 13px;
       }
 
-      .close {
-        margin-top: 15px;
+      .pulse {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--a), var(--b));
+        box-shadow: 0 0 0 rgba(96, 165, 250, 0.55);
+        animation: pulse 1.9s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.55);
+        }
+        70% {
+          box-shadow: 0 0 0 14px rgba(167, 139, 250, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(167, 139, 250, 0);
+        }
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 3.8vw, 4rem);
+        line-height: 1.05;
+        margin: 16px 0;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, rgba(96, 165, 250, 1), rgba(167, 139, 250, 1), rgba(34, 211, 238, 1));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 8px 20px rgba(167, 139, 250, 0.2));
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 22px;
+        max-width: 62ch;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.92);
+        padding: 13px 18px;
+        border-radius: 14px;
+        cursor: pointer;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        transition: 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        user-select: none;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .btn-primary {
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.95), rgba(167, 139, 250, 0.95));
+        box-shadow: var(--glow);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, rgba(96, 165, 250, 1), rgba(167, 139, 250, 1));
+      }
+
+      .hero-card {
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        padding: 18px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card:before {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        left: -280px;
+        top: -330px;
+        background: radial-gradient(circle at center, rgba(96, 165, 250, 0.42), transparent 62%);
+        transform: rotate(25deg);
+      }
+
+      .hero-card:after {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        right: -300px;
+        bottom: -330px;
+        background: radial-gradient(circle at center, rgba(167, 139, 250, 0.38), transparent 62%);
+        transform: rotate(-25deg);
+      }
+
+      .hero-card-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .stat {
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(5, 6, 23, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+      }
+
+      .stat .num {
+        font-weight: 950;
+        font-size: 18px;
+      }
+
+      .stat .lbl {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 6px;
+        line-height: 1.4;
+        font-weight: 650;
+      }
+
+      /* Section headers */
+      .section-title {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .section-title h2 {
+        font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+        line-height: 1.2;
+      }
+
+      .section-title p {
+        color: var(--muted);
+        max-width: 70ch;
+        line-height: 1.7;
+      }
+
+      /* Cards */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        transition: 0.2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+
+      .card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .badge {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.4px;
+        background: linear-gradient(135deg, rgba(34, 211, 238, 0.9), rgba(167, 139, 250, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: var(--glow);
+      }
+
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin: 10px 0 14px;
+      }
+
+      .price {
+        font-weight: 1000;
+        font-size: 34px;
+      }
+
+      .per {
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      ul.list {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        margin: 14px 0;
+      }
+
+      ul.list li {
+        display: flex;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 650;
+        align-items: flex-start;
+      }
+
+      .check {
+        width: 18px;
+        height: 18px;
+        border-radius: 8px;
+        background: rgba(96, 165, 250, 0.18);
+        border: 1px solid rgba(96, 165, 250, 0.35);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+        flex: 0 0 auto;
+      }
+
+      /* How it works */
+      .step {
+        display: flex;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .step .n {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 1000;
+        box-shadow: var(--glow);
+      }
+
+      .step h3 {
+        margin-bottom: 6px;
+      }
+
+      /* FAQ */
+      .faq {
+        display: grid;
+        gap: 12px;
+      }
+
+      details {
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 14px 16px;
+      }
+
+      details summary {
+        cursor: pointer;
+        font-weight: 900;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .chev {
+        width: 34px;
+        height: 34px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.04);
+        display: grid;
+        place-items: center;
+        transition: 0.2s ease;
+        flex: 0 0 auto;
+      }
+
+      details[open] .chev {
+        transform: rotate(180deg);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+
+      .answer {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* Form */
+      form {
+        display: grid;
+        gap: 14px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      label {
+        font-weight: 850;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(2, 6, 23, 0.25);
+        color: rgba(255, 255, 255, 0.92);
+        outline: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba(96, 165, 250, 0.55);
+        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .helper {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      footer {
+        padding: 28px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.65);
+        text-align: center;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 76px 0;
+        }
+      }
+
+      /* Anchor offset for fixed header */
+      [id] {
+        scroll-margin-top: 92px;
       }
     </style>
   </head>
+
   <body>
+    <div class="noise"></div>
+
     <header>
       <nav>
-        <div class="logo">MySite</div>
+        <div class="logo">
+          <div class="mark" aria-hidden="true"></div>
+          <span>NeonHost</span>
+        </div>
 
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#plans">Планове</a></li>
+          <li><a href="#features">Функции</a></li>
+          <li><a href="#how">Как става</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="nav-cta" href="#request"><span class="dot"></span> Вземи оферта</a></li>
         </ul>
       </nav>
     </header>
 
-    <section class="hero" id="home">
-      <h1>🚀 Welcome</h1>
-      <p>Create amazing websites with modern design and smooth animations.</p>
-      <button class="btn" onclick="openModal()">Get Started</button>
-    </section>
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <div class="pill"><span class="pulse" aria-hidden="true"></span> Уеб хостинг с неон-пулс ✨</div>
+            <h1>
+              Web Hosting, който <span class="gradient-text">гори бързо</span> и изглежда мега як.
+            </h1>
+            <p>
+              SSL, бърз SSD/NVMe, backup, стабилни uptime и панел, който прави всичко лесно.
+              Избери план и прати заявка — ние ще ти върнем оферта за секунди.
+            </p>
 
-    <section id="features">
-      <h2 style="text-align: center; margin-bottom: 40px">Features</h2>
+            <div class="cta-row">
+              <button class="btn btn-primary" type="button" onclick="scrollToId('plans')">
+                ⚡ Виж плановете
+              </button>
+              <button class="btn" type="button" onclick="scrollToId('request')">
+                📝 Вземи оферта
+              </button>
+            </div>
 
-      <div class="cards">
-        <div class="card">
-          <h3>⚡ Fast</h3>
-          <p>Optimized for performance.</p>
+            <div class="stat-grid" style="margin-top: 18px">
+              <div class="stat">
+                <div class="num">99.9%</div>
+                <div class="lbl">uptime (цел)</div>
+              </div>
+              <div class="stat">
+                <div class="num">Auto SSL</div>
+                <div class="lbl">HTTPS за минути</div>
+              </div>
+              <div class="stat">
+                <div class="num">NVMe</div>
+                <div class="lbl">бързи дискове</div>
+              </div>
+              <div class="stat">
+                <div class="num">Cloud Backup</div>
+                <div class="lbl">за спокойствие</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <h3 style="font-size: 18px; margin-bottom: 10px">Бърза оценка</h3>
+              <p class="muted" style="line-height: 1.7; margin-bottom: 14px">
+                Кажи за какво ти трябва хостинг — ние ще ти препоръчаме най-подходящия план.
+              </p>
+
+              <div class="grid-2">
+                <div class="card" style="padding: 14px; box-shadow: none">
+                  <h3 style="margin-bottom: 6px; font-size: 14px">Сайт</h3>
+                  <p class="muted" style="font-weight: 650; line-height: 1.6; font-size: 13px">
+                    WordPress / статичен сайт / блог
+                  </p>
+                </div>
+                <div class="card" style="padding: 14px; box-shadow: none">
+                  <h3 style="margin-bottom: 6px; font-size: 14px">Магазин</h3>
+                  <p class="muted" style="font-weight: 650; line-height: 1.6; font-size: 13px">
+                    WooCommerce / e-commerce
+                  </p>
+                </div>
+                <div class="card" style="padding: 14px; box-shadow: none">
+                  <h3 style="margin-bottom: 6px; font-size: 14px">Еmail</h3>
+                  <p class="muted" style="font-weight: 650; line-height: 1.6; font-size: 13px">
+                    Домейн + поща услуги
+                  </p>
+                </div>
+                <div class="card" style="padding: 14px; box-shadow: none">
+                  <h3 style="margin-bottom: 6px; font-size: 14px">Apps</h3>
+                  <p class="muted" style="font-weight: 650; line-height: 1.6; font-size: 13px">
+                    API / панели / услуги
+                  </p>
+                </div>
+              </div>
+
+              <div class="helper" style="margin-top: 14px">
+                Натисни „Вземи оферта“ и прати заявка — ще ти върнем конкретни условия.
+              </div>
+
+              <div class="cta-row" style="margin-top: 14px">
+                <button class="btn btn-primary" type="button" onclick="scrollToId('request')">🚀 Стартирай</button>
+                <a class="btn" href="mailto:hello@neonhost.bg?subject=Запитване%20за%20Web%20Hosting">✉️ Пиши ни</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="card">
-          <h3>🎨 Modern</h3>
-          <p>Beautiful and clean UI.</p>
+      <section id="plans">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="gradient-text">Планове</h2>
+            <p>Избери ниво според трафик, ресурси и нужди. По-популярният план е с badge — защото хората обичат да са бързи 😄</p>
+          </div>
+
+          <div class="grid-3">
+            <article class="card">
+              <h3>Starter</h3>
+              <div class="price-row">
+                <div class="price">9.90</div>
+                <div class="per">лв./месец</div>
+              </div>
+              <div class="muted" style="font-weight: 750; line-height: 1.6">За начинаещи и лични сайтове.</div>
+
+              <ul class="list">
+                <li><span class="check">✓</span> 1 домейн</li>
+                <li><span class="check">✓</span> SSL (Auto)</li>
+                <li><span class="check">✓</span> SSD / NVMe</li>
+                <li><span class="check">✓</span> Бекъпс (периодични)</li>
+              </ul>
+
+              <div class="cta-row" style="margin-top: 10px">
+                <button class="btn" type="button" onclick="choosePlan('starter')">Избери Starter</button>
+              </div>
+            </article>
+
+            <article class="card" style="border-color: rgba(167, 139, 250, 0.32)">
+              <div class="badge">⭐ Най-популярен</div>
+              <h3>Business</h3>
+              <div class="price-row">
+                <div class="price">19.90</div>
+                <div class="per">лв./месец</div>
+              </div>
+              <div class="muted" style="font-weight: 750; line-height: 1.6">За бизнес сайтове и малки магазини.</div>
+
+              <ul class="list">
+                <li><span class="check">✓</span> 3 домейна</li>
+                <li><span class="check">✓</span> SSL + автоматичен renew</li>
+                <li><span class="check">✓</span> Backup + restore</li>
+                <li><span class="check">✓</span> Оптимизация за скорост</li>
+              </ul>
+
+              <div class="cta-row" style="margin-top: 10px">
+                <button class="btn btn-primary" type="button" onclick="choosePlan('business')">Избери Business</button>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Pro</h3>
+              <div class="price-row">
+                <div class="price">39.90</div>
+                <div class="per">лв./месец</div>
+              </div>
+              <div class="muted" style="font-weight: 750; line-height: 1.6">За агенции, повече ресурси и стабилност.</div>
+
+              <ul class="list">
+                <li><span class="check">✓</span> 10 домейна</li>
+                <li><span class="check">✓</span> Advanced caching</li>
+                <li><span class="check">✓</span> Daily backup (цел)</li>
+                <li><span class="check">✓</span> Priority support</li>
+              </ul>
+
+              <div class="cta-row" style="margin-top: 10px">
+                <button class="btn" type="button" onclick="choosePlan('pro')">Избери Pro</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="helper" style="margin-top: 14px">
+            Цените са примерни за landing page. В заявката можеш да уточниш ресурсите и ние ще ти дадем точна оферта.
+          </div>
         </div>
+      </section>
 
-        <div class="card">
-          <h3>📱 Responsive</h3>
-          <p>Works on all devices.</p>
+      <section id="features">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="gradient-text">Функции</h2>
+            <p>Всичко важно, което ти трябва за стабилен сайт. Неон-стайл, ама реални екстри.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h3>🔒 SSL & HTTPS</h3>
+              <p class="muted" style="line-height: 1.7">
+                Auto SSL, лесно активиране и автоматично подновяване.
+              </p>
+            </div>
+            <div class="card">
+              <h3>⚡ SSD / NVMe</h3>
+              <p class="muted" style="line-height: 1.7">
+                Бързи дискове за по-добра скорост и по-нисък latency.
+              </p>
+            </div>
+            <div class="card">
+              <h3>🧰 Контролен панел</h3>
+              <p class="muted" style="line-height: 1.7">
+                Домейни, имейл, файлове и настройки — удобно и ясно.
+              </p>
+            </div>
+            <div class="card">
+              <h3>🛡️ Backup</h3>
+              <p class="muted" style="line-height: 1.7">
+                Периодични backup-и и опция за restore.
+              </p>
+            </div>
+            <div class="card">
+              <h3>📈 Оптимизация</h3>
+              <p class="muted" style="line-height: 1.7">
+                Caching + оптимизации за по-бързо зареждане.
+              </p>
+            </div>
+            <div class="card">
+              <h3>🧠 Support</h3>
+              <p class="muted" style="line-height: 1.7">
+                Помощ, когато ти трябва — без излишни драми.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="about">
-      <h2 style="text-align: center; margin-bottom: 20px">About Us</h2>
-      <p style="text-align: center">
-        This is a modern website template with working buttons, smooth scrolling
-        and interactive elements.
-      </p>
-    </section>
+      <section id="how">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="gradient-text">Как става</h2>
+            <p>3 стъпки от „искам хостинг“ до „сайтът ми лети“.</p>
+          </div>
 
-    <section class="contact" id="contact">
-      <h2>Contact</h2>
-      <br />
-      <button class="btn" onclick="sendMessage()">Send Message</button>
-    </section>
+          <div class="grid-2">
+            <div class="card step">
+              <div class="n">1</div>
+              <div>
+                <h3>Избери план</h3>
+                <p class="muted" style="line-height: 1.7">
+                  Starter / Business / Pro. Ако не си сигурен — пак става.
+                </p>
+              </div>
+            </div>
+            <div class="card step">
+              <div class="n">2</div>
+              <div>
+                <h3>Прати заявка</h3>
+                <p class="muted" style="line-height: 1.7">
+                  Попълни формата и ние ще върнем оферта.
+                </p>
+              </div>
+            </div>
+            <div class="card step">
+              <div class="n">3</div>
+              <div>
+                <h3>Активирай и пусни</h3>
+                <p class="muted" style="line-height: 1.7">
+                  SSL, настройки и старт. После — оптимизация при нужда.
+                </p>
+              </div>
+            </div>
+            <div class="card step">
+              <div class="n">💎</div>
+              <div>
+                <h3>+ Неон look</h3>
+                <p class="muted" style="line-height: 1.7">
+                  Хостингът не трябва да е скучен. Тук не е.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <footer>
-      <p>© 2026 MySite. All Rights Reserved.</p>
-    </footer>
+      <section id="faq">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="gradient-text">FAQ</h2>
+            <p>Бързи отговори на най-честите въпроси.</p>
+          </div>
 
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <h2>🎉 Welcome!</h2>
-        <p>Thanks for clicking the button.</p>
-        <button class="btn close" onclick="closeModal()">Close</button>
-      </div>
-    </div>
+          <div class="faq">
+            <details>
+              <summary>
+                Колко време отнема активирането?
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="answer">
+                Обикновено до няколко часа (зависи от заявката и домейна). В заявката уточняваш и ние насочваме процеса.
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                Включен ли е SSL?
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="answer">
+                Да — auto SSL. След като домейнът сочи към услугата, активираме HTTPS.
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                Правите ли backup и има ли restore?
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="answer">
+                Да. Поддръжката на backup/restory зависи от плана. За детайли — попълни формата и ще ти върнем конкретика.
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                Мога ли да сменя плана по-късно?
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="answer">
+                Да. Когато ти потрябва повече ресурс — минаваш на по-горен план. Без излишно чакане.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="request">
+        <div class="container">
+          <div class="section-title">
+            <h2 class="gradient-text">Вземи оферта</h2>
+            <p>Формата ти генерира имейл (mailto) с предварително попълнен текст. Само изпращаш.</p>
+          </div>
+
+          <div class="card" style="padding: 22px">
+            <form id="requestForm">
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Име</label>
+                  <input id="name" name="name" type="text" placeholder="Иван Иванов" required />
+                </div>
+                <div class="field">
+                  <label for="email">Имейл</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="domain">Домейн / Сайт (по избор)</label>
+                  <input id="domain" name="domain" type="text" placeholder="example.com" />
+                </div>
+                <div class="field">
+                  <label for="plan">Избран план</label>
+                  <select id="plan" name="plan">
+                    <option value="starter">Starter</option>
+                    <option value="business" selected>Business</option>
+                    <option value="pro">Pro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">Какво ти трябва? (кратко)</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Напр. WordPress сайт, ~5k visits/month, нужни са имейли и backup..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">📨 Изпрати заявка</button>
+                <button class="btn" type="button" onclick="prefillExample()">✨ Пример текст</button>
+                <div class="helper">
+                  Ще отвори имейл с предмет и съдържание, за да не губиш време.
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">© <span id="year"></span> NeonHost. Всички права запазени.</div>
+      </footer>
+    </main>
+
+    <script>
+      const TARGET_EMAIL = 'hello@neonhost.bg';
+
+      function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function choosePlan(planValue) {
+        const planSelect = document.getElementById('plan');
+        if (planSelect) {
+          planSelect.value = planValue;
+        }
+        scrollToId('request');
+      }
+
+      function prefillExample() {
+        const msg = document.getElementById('message');
+        if (!msg) return;
+        msg.value =
+          'Здравейте! Искам уеб хостинг за WordPress сайт. Очаквам около 3–5k посещения/месец. Нужни са SSL и backup. Моля за оферта и срок за активиране.';
+        msg.focus();
+      }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      document.getElementById('requestForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const domain = document.getElementById('domain').value.trim();
+        const plan = document.getElementById('plan').value;
+        const message = document.getElementById('message').value.trim();
+
+        const planLabel =
+          plan === 'starter' ? 'Starter' : plan === 'business' ? 'Business' : 'Pro';
+
+        const subject = `Заявка за Web Hosting (${planLabel})`;
+
+        const bodyLines = [
+          `Име: ${name}`,
+          `Имейл: ${email}`,
+          `Домейн/Сайт: ${domain || '-'}`,
+          `Избран план: ${planLabel}`,
+          '',
+          'Съобщение:',
+          message,
+        ];
+
+        const body = bodyLines.join('\n');
+
+        const mailto = `mailto:${encodeURIComponent(TARGET_EMAIL)}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailto;
+      });
+    </script>
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
       (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
+        var s1 = document.createElement('script'),
+          s0 = document.getElementsByTagName('script')[0];
         s1.async = true;
-        s1.src = "https://embed.tawk.to/6a35a6ae0892181d4aaf050d/1jrgp674l";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
+        s1.src = 'https://embed.tawk.to/6a35a6ae0892181d4aaf050d/1jrgp674l';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
     <!--End of Tawk.to Script-->
   </body>
 </html>
+
