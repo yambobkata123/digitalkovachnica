@@ -1,14 +1,11 @@
-# TODO
+# TODO - Mobile responsive (responsible за phone)
 
-- [x] Разглеждане на текущ `index.html` и `TODO.md`.
-- [ ] Обновяване на `index.html` в full sales landing page за **Web Hosting**:
-  - [ ] Hero + CTA
-  - [ ] Plans (3 тарифи + badge)
-  - [ ] Features (SSL/backup/uptime и т.н.)
-  - [ ] How it works (3 стъпки)
-  - [ ] FAQ акардион (JS)
-  - [ ] Request/Contact форма (JS mailto)
-  - [ ] Синьо-лилава “neon / space” визия + responsive layout
-- [x] Обновяване на `README.md` с инструкции за стартиране/отваряне.
+- [x] 1) Добавяне на responsive CSS за много малки екрани (<=520px)
+  - [x] 1.1 Header/nav: менюто да стане вертикално (stack) под хедъра
+  - [x] 1.2 Намаляване на padding/gap/font-size за hero елементите
+  - [x] 1.3 Превръщане на grid-3/grid-2/form-row в 1 колона
+  - [x] 1.4 Базова защита за удобство на екрани (overflow/четимост)
+- [ ] 2) Локално тест в браузър (телефонни резолюции)
+- [ ] 3) (Опционално) Ако header stack пречи визуално — финни настройки на breakpoints
 
 

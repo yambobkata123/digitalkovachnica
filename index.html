@@ -615,6 +615,103 @@
         }
       }
 
+      /* Phone-first tweaks */
+      @media (max-width: 520px) {
+        header {
+          position: sticky;
+        }
+
+        nav {
+          padding: 12px 12px;
+          align-items: flex-start;
+        }
+
+        nav ul {
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          padding-top: 8px;
+        }
+
+        nav a {
+          width: 100%;
+          padding: 10px 10px;
+          font-size: 13px;
+        }
+
+        .nav-cta {
+          justify-content: center;
+        }
+
+        .container {
+          padding: 0 12px;
+        }
+
+        section {
+          padding: 64px 0;
+        }
+
+        .hero {
+          padding-top: 76px;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .pill {
+          font-size: 12px;
+          padding: 9px 12px;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        .stat .num {
+          font-size: 16px;
+        }
+
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: 16px;
+        }
+
+        .form-actions {
+          justify-content: stretch;
+        }
+
+        .form-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .helper {
+          width: 100%;
+        }
+
+        form {
+          gap: 12px;
+        }
+
+        textarea {
+          min-height: 95px;
+        }
+
+        [id] {
+          scroll-margin-top: 110px;
+        }
+      }
+
       /* Anchor offset for fixed header */
       [id] {
         scroll-margin-top: 92px;
